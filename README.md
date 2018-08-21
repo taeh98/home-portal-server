@@ -11,3 +11,6 @@ Lightweight database to hold links to commonly used sites to be on the portal pa
         JS to query and retrieve data in get requests --> inject onto portal page
         JS to write updates to database (adding/removing, updating number of clicks, etc)
         tiles ordered by number of clicks (most clicked towards top of page)
+
+
+        database to be sqllite; run in memory and import and export from csv file in linkTiles folder
