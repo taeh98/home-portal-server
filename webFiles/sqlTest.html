@@ -1,0 +1,32 @@
+<!doctype html>
+<head>
+    <title>SQL Test Page</title>
+    <meta charset="utf-8" />
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/alasql.min.js"></script>
+    
+    <script>
+    $(document).ready(function () {
+        alasql("CREATE TABLE cities (city string, population number)");
+        alasql("INSERT INTO cities VALUES ('Rome',2863223), ('Paris',2249975), ('Berlin',3517424),  ('Madrid',3041579)");
+        let res = alasql("SELECT * FROM cities WHERE population < 3500000 ORDER BY population DESC");
+    
+        // res now contains this array of object:
+        // [{"city":"Madrid","population":3041579},{"city":"Rome","population":2863223},{"city":"Paris","population":2249975}]
+        console.log(res);
+        let resText = res.toString();
+        console.log(resText);
+        $("#sqlTestResult").text(res);
+    });
+    </script>
+</head>
+
+<body>
+<h1>henlo, it me the sql test page</h1>
+<a href="/">home page</a><br/>
+<div id="sqlTest">
+    <h1>SQL test below</h1><br/>
+    <p id="sqlTestResult"></p>
+</div>
+</body>
+</html>
