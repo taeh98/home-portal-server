@@ -1,9 +1,12 @@
 /**
  * JS source file to get the news from an API, then return a JSON object of headlines and URLs for links.
  */
+const configFolderPath = "../../config";
 
 let noNewsArticles = 0;
-let newsAPIDotOrgAPIKey = "011bb99cdfaa4d26ad39b5d13bec9849";
+let newsAPIDotOrgAPIKey = "";
+let newsAPIDotOrgSources = [];
+
 
 function getNews() {
     let newsApiUrls = ["https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=" + newsAPIDotOrgAPIKey, "https://newsapi.org/v2/top-headlines?sources=independent&apiKey=" + newsAPIDotOrgAPIKey, "https://newsapi.org/v2/top-headlines?sources=the-guardian-uk&apiKey=" + newsAPIDotOrgAPIKey];
