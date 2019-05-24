@@ -6,7 +6,7 @@
 
     -- make the database file and open the sqlite 3 cli:
 
-    sqlite3 newsAPISettings.db
+    sqlite3 links.db
 
     -- make the table:
 
