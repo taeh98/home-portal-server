@@ -1,10 +1,10 @@
 const sqlite3 = require("sqlite3").verbose();
 const tableName = "Links";
 const orderedViewName = "OrderedLinks";
-const dbFilePath = "/db/links.db";
+const dbFilePath = "/backend/links.backend";
 
 $(document).ready(function () {
-    let db = new sqlite3.Database("/db/links.db");
+    let db = new sqlite3.Database("/backend/links.backend");
     const sql = "SELECT * from " + orderedViewName + ";";
 
     db.all(sql, [], (err, rows) => {

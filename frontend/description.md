@@ -1,0 +1,1 @@
+vuejs frontend that interacts with the backend to render stuff on screen

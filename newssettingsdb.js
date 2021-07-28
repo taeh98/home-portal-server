@@ -1,6 +1,6 @@
 const sqlite3 = require("sqlite3").verbose();
 const tableName = "NewsAPISettings";
-const dbFilePath = "/db/links.db";
+const dbFilePath = "/backend/links.backend";
 
 function setNewsAPISettings(key, sources) {
     const statement = "DELETE FROM " + tableName + "; INSERT INTO " + tableName + " VALUES (\"" + key + "\", \"" + sources + "\");";
