@@ -35,7 +35,7 @@ services:
     restart: always
     image: postgres:13.3
     expose:
-      - 27016
+      - 5432
     container_name: postgres_tiles_db
     env_file:
       - postgres_tiles_db.env
