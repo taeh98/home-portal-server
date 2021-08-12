@@ -17,4 +17,10 @@ mongo db of settings:
 getting weather
 getting news
 
-future: finance, calendar, etc
+future:
+    finance, calendar, etc
+    quote
+    search
+    todo list
+    calendar integration - upcoming events and schedule for day
+    emails
