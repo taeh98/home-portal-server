@@ -6,6 +6,13 @@ postgres table of links:
     url
     num of clicks (auto)
 
+CREATE TABLE links (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    url TEXT NOT NULL,
+    click_count BIGINT NOT NULL
+);
+
 mongo db of settings:
     https://newsapi.org/ api key (mandatory)
     https://openweathermap.org/ api key (mandatory)
