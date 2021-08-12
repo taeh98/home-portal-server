@@ -39,3 +39,8 @@ services:
     container_name: postgres_tiles_db
     env_file:
       - postgres_tiles_db.env
+    volumes:
+      - postgres_tiles_db_data:/var/lib/home-portal-server/postgres_tiles_db_data/ # persist data even if container shuts down
+
+volumes:
+  postgres_tiles_db_data: # named volumes can be managed easier using docker-compose
