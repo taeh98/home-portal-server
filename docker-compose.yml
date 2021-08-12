@@ -23,6 +23,10 @@ services:
       - dev=1
       - mongo_settings_db_container_name=mongo_settings_db
       - postgres_tiles_db_container_name=postgres_tiles_db
+      - postgres_tiles_db_name=rainbow_database
+      - postgres_tiles_db_user_name=unicorn_user
+      - postgres_tiles_db_user_password=magical_password
+      - postgres_tiles_db_port=5432
 
   mongo_settings_db:
     restart: always
