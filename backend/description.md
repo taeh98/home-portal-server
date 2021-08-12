@@ -13,6 +13,9 @@ CREATE TABLE links (
     click_count BIGINT NOT NULL
 );
 
+get into bash for container with: "docker exec -it postgres_tiles_db bash"
+then get into psql with "psql --host=postgres_tiles_db --username=unicorn_user --dbname=rainbow_database --port=5432"
+
 mongo db of settings:
     https://newsapi.org/ api key (mandatory)
     https://openweathermap.org/ api key (mandatory)
