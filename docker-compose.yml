@@ -1,32 +1,37 @@
 version: "3.7"
 services:
-  frontend:
-    build: frontend
-    expose:
-      - 8000
-    depends_on:
-      - express
+#  frontend:
+#    build: frontend
+#    expose:
+#      - 8000
+#    depends_on:
+#      - express
 
   express:
     restart: always
     build: backend
     depends_on:
-      - mongo
-      - postgres
+      - mongo_settings_db
+#      - postgres
     links:
-      - mongo
-      - postgres
+      - mongo_settings_db
+#      - postgres
     expose: 
       - 27015
 
-  mongo:
+    environment:
+      - dev=1
+      - db_service_name=mongo_settings_db
+
+  mongo_settings_db:
     restart: always
     image: mongo:5.0.2
     expose:
       - 27017
+    container_name: mongo_settings_db
 
-  postgres:
-    restart: always
-    image: postgres:13.3
-    expose:
-      - 27016
+#  postgres:
+#    restart: always
+#    image: postgres:13.3
+#    expose:
+#      - 27016
