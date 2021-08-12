@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 
 const MONGO_DB_PORT_NUMBER = 27017;
-const url = `mongodb://${process.env.db_service_name}:${MONGO_DB_PORT_NUMBER}`;
+const url = `mongodb://${process.env.mongo_settings_db_container_name}:${MONGO_DB_PORT_NUMBER}`;
 const client = new MongoClient(url);
 const SETTINGS_DB_NAME = "settings";
 

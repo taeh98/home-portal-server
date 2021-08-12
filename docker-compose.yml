@@ -7,7 +7,7 @@ services:
 #    depends_on:
 #      - express
 
-  express:
+  backend:
     restart: always
     build: backend
     depends_on:
@@ -21,7 +21,7 @@ services:
 
     environment:
       - dev=1
-      - db_service_name=mongo_settings_db
+      - mongo_settings_db_container_name=mongo_settings_db
 
   mongo_settings_db:
     restart: always
