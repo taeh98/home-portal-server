@@ -12,16 +12,17 @@ services:
     build: backend
     depends_on:
       - mongo_settings_db
-#      - postgres
+#      - postgres_tiles_db
     links:
       - mongo_settings_db
-#      - postgres
+#      - postgres_tiles_db
     expose: 
       - 27015
 
     environment:
       - dev=1
       - mongo_settings_db_container_name=mongo_settings_db
+      - postgres_tiles_db_container_name=postgres_tiles_db
 
   mongo_settings_db:
     restart: always
@@ -30,8 +31,11 @@ services:
       - 27017
     container_name: mongo_settings_db
 
-#  postgres:
-#    restart: always
-#    image: postgres:13.3
-#    expose:
-#      - 27016
+  postgres_tiles_db:
+    restart: always
+    image: postgres:13.3
+    expose:
+      - 27016
+    container_name: postgres_tiles_db
+    env_file:
+      - postgres_tiles_db.env
