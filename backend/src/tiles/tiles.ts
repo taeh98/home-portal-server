@@ -101,3 +101,27 @@ async function deleteTilesById(ids: number[]): Promise<void> {
     };
     await linkModel.destroy({where: wo});
 }
+
+// TESTING
+
+function main() {
+    getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles));
+
+    console.log("incrementing first tile");
+    incrementOutclicksByTileId(0)
+        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles)));
+
+    console.log("setting first tile outclicks to 0");
+    editTile({id: 0, url: 'https://www.google.com', clickCount: 0, name: 'Google'})
+        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles)));
+
+    console.log("adding new tile to guardian");
+    addNewTile('The Guardian', 'https://www.theguardian.com', 0)
+        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles)));
+
+    console.log("deleting tile with id of 12");
+   deleteTilesById([12])
+        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles)));
+}
+
+main();
