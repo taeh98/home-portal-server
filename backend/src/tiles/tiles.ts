@@ -1,4 +1,4 @@
-import {Sequelize, DataTypes} from "sequelize";
+import {Sequelize, DataTypes, WhereOptions, Op} from "sequelize";
 
 const postgresUri = 'postgres://' + process.env.postgres_tiles_db_user_name + ':' + process.env.postgres_tiles_db_user_password +
     '@' + process.env.postgres_tiles_db_container_name + ':' + process.env.postgres_tiles_db_port + '/' + process.env.postgres_tiles_db_name;
@@ -36,6 +36,14 @@ type TileObject = {
     clickCount: number
 };
 
+// CREATE
+
+async function addNewTile(name: string, url: string, clickCount: number): Promise<void> {
+    await linkModel.create({name: name, url: url, clickCount: clickCount});
+}
+
+// READ
+
 async function getAllTiles(): Promise<TileObject[]> {
     try {
         await sequelize.authenticate();
@@ -61,4 +69,35 @@ async function getAllTiles(): Promise<TileObject[]> {
         console.error('Unable to get tiles from the postgres database:', error);
         return [];
     }
+}
+
+// UPDATE
+
+async function editTile(tile: TileObject): Promise<void> {
+    const sqTile = await linkModel.findByPk(tile.id);
+    if (sqTile === null) return;
+
+    sqTile.setDataValue("name", tile.name);
+    sqTile.setDataValue("url", tile.url);
+    sqTile.setDataValue("clickCount", tile.clickCount);
+    await sqTile.save();
+}
+
+async function incrementOutclicksByTileId(id: number): Promise<void> {
+    const sqTile = await linkModel.findByPk(id);
+    if (sqTile === null) return;
+
+    sqTile.setDataValue("clickCount", Number.parseInt(sqTile.getDataValue("clickCount"), 10) + 1);
+    await sqTile.save();
+}
+
+// DELETE
+
+async function deleteTilesById(ids: number[]): Promise<void> {
+    const wo: WhereOptions = {
+        id: {
+            [Op.or]: ids
+        }
+    };
+    await linkModel.destroy({where: wo});
 }
