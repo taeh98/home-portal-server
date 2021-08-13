@@ -79,7 +79,7 @@ async function incrementOutclicksByTileId(id: number): Promise<void> {
     const sqTile = await linkModel.findByPk(id);
     if (sqTile === null) return;
 
-    sqTile.setDataValue("clickCount", Number.parseInt(sqTile.getDataValue("clickCount"), 10) + 1);
+    await sqTile.increment('clickCount', { by: 1 });
     await sqTile.save();
 }
 
