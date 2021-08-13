@@ -16,13 +16,23 @@ CREATE TABLE links (
 get into bash for container with: "docker exec -it postgres_tiles_db bash"
 then get into psql with "psql --host=postgres_tiles_db --username=unicorn_user --dbname=rainbow_database --port=5432"
 
-mongo db of settings:
+mongo collections within the settings db:
+
+appearance
+    bg colour or theme
+
+news
     https://newsapi.org/ api key (mandatory)
-    https://openweathermap.org/ api key (mandatory)
     sources
     country
-    bg colour
-    news categories
+    categories
+
+weather
+    https://openweathermap.org/ api key (mandatory)
+    location - coords or city (?)
+
+search provider
+    duckduckgo, startpage, qwant, bing, google
 
 getting weather
 getting news
