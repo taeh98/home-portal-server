@@ -105,23 +105,19 @@ async function deleteTilesById(ids: number[]): Promise<void> {
 // TESTING
 
 function main() {
-    getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles));
+    getAllTiles().then((tiles: TileObject[]) => console.log("first time getting all tiles: ", tiles));
 
-    console.log("incrementing first tile");
-    incrementOutclicksByTileId(0)
-        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles)));
+    incrementOutclicksByTileId(1)
+        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("after incrementing first tile: ", tiles)));
 
-    console.log("setting first tile outclicks to 0");
-    editTile({id: 0, url: 'https://www.google.com', clickCount: 0, name: 'Google'})
-        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles)));
+    editTile({id: 1, url: 'https://www.google.com', clickCount: 0, name: 'Google'})
+        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("after setting first tile outclicks to 0: ", tiles)));
 
-    console.log("adding new tile to guardian");
     addNewTile('The Guardian', 'https://www.theguardian.com', 0)
-        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles)));
+        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("after adding new tile to guardian: ", tiles)));
 
-    console.log("deleting tile with id of 12");
    deleteTilesById([12])
-        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("got all tiles: ", tiles)));
+        .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("after deleting tile with id of 12: ", tiles)));
 }
 
 main();
