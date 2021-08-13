@@ -47,16 +47,8 @@ async function addNewTile(name: string, url: string, clickCount: number): Promis
 async function getAllTiles(): Promise<TileObject[]> {
     try {
         await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-
-        const syncRes = await linkModel.sync();
-
-        console.debug("syncRes = ", syncRes);
-
+        await linkModel.sync();
         const findAllRes = await linkModel.findAll();
-
-        console.debug("findAllRes = ", findAllRes);
-
         return findAllRes.map((resItem) => ({
             id: resItem.getDataValue("id"),
             name: resItem.getDataValue("name"),
