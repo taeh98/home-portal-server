@@ -96,19 +96,19 @@ async function deleteTilesById(ids: number[]): Promise<void> {
 
 // TESTING
 
-function main() {
-    getAllTiles().then((tiles: TileObject[]) => console.log("first time getting all tiles: ", tiles));
+async function main() {
+    await getAllTiles().then((tiles: TileObject[]) => console.log("first time getting all tiles: ", tiles));
 
-    incrementOutclicksByTileId(1)
+    await incrementOutclicksByTileId(1)
         .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("after incrementing first tile: ", tiles)));
 
-    editTile({id: 1, url: 'https://www.google.com', clickCount: 0, name: 'Google'})
+    await editTile({id: 1, url: 'https://www.google.com', clickCount: 0, name: 'Google'})
         .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("after setting first tile outclicks to 0: ", tiles)));
 
-    addNewTile('The Guardian', 'https://www.theguardian.com', 0)
+    await addNewTile('The Guardian', 'https://www.theguardian.com', 0)
         .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("after adding new tile to guardian: ", tiles)));
 
-   deleteTilesById([12])
+    await deleteTilesById([12])
         .then(_r => getAllTiles().then((tiles: TileObject[]) => console.log("after deleting tile with id of 12: ", tiles)));
 }
 
