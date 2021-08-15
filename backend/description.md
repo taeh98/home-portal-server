@@ -32,7 +32,7 @@ weather
     location - coords or city (?)
 
 search provider
-    duckduckgo, startpage, qwant, bing, google
+    DuckDuckGo, Bing, Google
 
 getting weather
 getting news
