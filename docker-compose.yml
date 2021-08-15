@@ -1,22 +1,22 @@
 version: "3.7"
 services:
-#  frontend:
-#    build: frontend
-#    expose:
-#      - 8000
-#    depends_on:
-#      - express
+  frontend:
+    build: frontend
+    expose:
+      - 8000
+    depends_on:
+      - express
 
   backend:
     restart: always
     build: backend
     depends_on:
       - mongo_settings_db
-#      - postgres_tiles_db
+      - postgres_tiles_db
     links:
       - mongo_settings_db
-#      - postgres_tiles_db
-    expose: 
+      - postgres_tiles_db
+    expose:
       - 27015
 
     environment:
@@ -34,6 +34,9 @@ services:
     expose:
       - 27017
     container_name: mongo_settings_db
+    volumes:
+      - mongo_settings_db_data:/var/lib/home-portal-server/mongo_settings_db_data/
+      - ./make_settings_mongo_db.js:/docker-entrypoint-initdb.d/make_settings_mongo_db.js:ro
 
   postgres_tiles_db:
     restart: always
@@ -49,3 +52,4 @@ services:
 
 volumes:
   postgres_tiles_db_data: # named volumes can be managed easier using docker-compose
+  mongo_settings_db_data:
