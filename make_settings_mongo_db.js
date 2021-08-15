@@ -1,5 +1,3 @@
-let error = true;
-
 db = db.getSiblingDB('settings');
 
 collections = db.getCollectionNames();
@@ -48,12 +46,9 @@ collections = db.getCollectionNames();
 for (let i = 0; i < collections.length; i++) {
     collection_name = collections[i];
     collection = db.getCollection(collection_name);
-    indices = collection.getIndexes();
-    print("for i = " + i + ", collection_name = " + collection_name + ", and collection = " + collection + ", indices = " + JSON.stringify(indices));
-}
-
-if (error) {
-    print('Error, exiting');
-    print(error);
-    quit(1);
+    let findRes = collection.find();
+    print("\r\n\r\nfor i = " + i + ", collection_name = " + collection_name + ", and collection = " + collection + ", findRes:");
+    while (findRes.hasNext()) {
+        printjson(findRes.next());
+    }
 }
